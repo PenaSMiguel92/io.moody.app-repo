@@ -10,7 +10,7 @@ public class UserDAO implements IDataAccessObject<User> {
 
     public boolean createRecord(User data) {
         try {
-            String sql = "INSERT INTO users (username, email, pass) VALUES (?, ?, ?)"; 
+            String sql = "INSERT INTO site_user (username, email, pass) VALUES (?, ?, ?)"; 
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
             stmnt.setString(1, data.username);
             stmnt.setString(2, data.email);
