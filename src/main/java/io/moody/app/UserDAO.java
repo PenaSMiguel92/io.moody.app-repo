@@ -9,30 +9,25 @@ public class UserDAO implements IDataAccessObject<User> {
     }
 
     public boolean createRecord(User data) {
+        boolean success = false;
         try {
-            String sql = "INSERT INTO site_user (username, email, pass) VALUES (?, ?, ?)"; 
+            String sql = "INSERT INTO site_user (id, username, email, pass) VALUES (?, ?, ?, ?)"; 
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
-            stmnt.setString(1, data.username);
-            stmnt.setString(2, data.email);
-            stmnt.setString(3, data.pass);
-            stmnt.executeUpdate();
-
-            String sql2 = "SELECT id FROM site_user WHERE username = " + data.username;
-            Statement stmnt2 = this.connection.createStatement();
-            ResultSet rs = stmnt2.executeQuery(sql2);
-            int id = 0;
-            while (rs.next()) {
-                id = rs.getInt("id");
-            }
-            data.setId(id);
+            stmnt.setLong(1, data.getId());
+            stmnt.setString(2, data.getUsername());
+            stmnt.setString(3, data.getEmail());
+            stmnt.setString(4, data.getPass());
+            int rowsAffected = stmnt.executeUpdate();
+            if (rowsAffected > 0)
+                success = true;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return true;
+        return success;
     }
 
-    public User readRecord(int id) {
+    public User readRecord(long id) {
         String username = "";
         String email = "";
         String pass = "";
@@ -58,10 +53,10 @@ public class UserDAO implements IDataAccessObject<User> {
         try {
             String sql = "UPDATE site_user SET username = ?, email = ?, pass = ? WHERE id = ?";
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
-            stmnt.setString(1, data.username);
-            stmnt.setString(2, data.email);
-            stmnt.setString(3, data.pass);
-            stmnt.setInt(4, data.getId());
+            stmnt.setString(1, data.getUsername());
+            stmnt.setString(2, data.getEmail());
+            stmnt.setString(3, data.getPass());
+            stmnt.setLong(4, data.getId());
             int rowsAffected = stmnt.executeUpdate();
             if (rowsAffected > 0) {
                 success = true;
@@ -72,12 +67,12 @@ public class UserDAO implements IDataAccessObject<User> {
         return success;
     }
 
-    public boolean deleteRecord(int id) {
+    public boolean deleteRecord(long id) {
         boolean success = false;
         try {
             String sql = "DELETE FROM site_user WHERE id = ?";
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
-            stmnt.setInt(1, id);
+            stmnt.setLong(1, id);
             int rowsAffected = stmnt.executeUpdate();
             if (rowsAffected > 0) {
                 success = true;
