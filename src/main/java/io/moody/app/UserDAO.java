@@ -11,7 +11,7 @@ public class UserDAO implements IDataAccessObject<User> {
     public boolean createRecord(User data) {
         boolean success = false;
         try {
-            String sql = "INSERT INTO site_user (id, username, email, pass) VALUES (?, ?, ?, ?)"; 
+            String sql = "INSERT INTO site_user (user_id, username, email, pass) VALUES (?, ?, ?, ?)"; 
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
             stmnt.setLong(1, data.getId());
             stmnt.setString(2, data.getUsername());
@@ -32,7 +32,7 @@ public class UserDAO implements IDataAccessObject<User> {
         String email = "";
         String pass = "";
         try {
-            String sql = "SELECT username, email, pass FROM site_user WHERE id = " + id;
+            String sql = "SELECT username, email, pass FROM site_user WHERE user_id = " + id;
             Statement stmnt = this.connection.createStatement();
             ResultSet rs = stmnt.executeQuery(sql);
 
@@ -51,7 +51,7 @@ public class UserDAO implements IDataAccessObject<User> {
     public boolean updateRecord(User data) {
         boolean success = false;
         try {
-            String sql = "UPDATE site_user SET username = ?, email = ?, pass = ? WHERE id = ?";
+            String sql = "UPDATE site_user SET username = ?, email = ?, pass = ? WHERE user_id = ?";
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
             stmnt.setString(1, data.getUsername());
             stmnt.setString(2, data.getEmail());
@@ -70,7 +70,7 @@ public class UserDAO implements IDataAccessObject<User> {
     public boolean deleteRecord(long id) {
         boolean success = false;
         try {
-            String sql = "DELETE FROM site_user WHERE id = ?";
+            String sql = "DELETE FROM site_user WHERE user_id = ?";
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
             stmnt.setLong(1, id);
             int rowsAffected = stmnt.executeUpdate();
