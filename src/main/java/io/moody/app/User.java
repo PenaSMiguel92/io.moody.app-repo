@@ -12,4 +12,12 @@ public class User {
         this.email = email;
         this.pass = pass;
     }
+
+    void setId(int id) {
+        this.id = id;
+    }
+
+    int getId() {
+        return this.id;
+    }
 }

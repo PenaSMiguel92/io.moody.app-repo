@@ -16,6 +16,16 @@ public class UserDAO implements IDataAccessObject<User> {
             stmnt.setString(2, data.email);
             stmnt.setString(3, data.pass);
             stmnt.executeUpdate();
+
+            String sql2 = "SELECT id FROM site_user WHERE username = " + data.username;
+            Statement stmnt2 = this.connection.createStatement();
+            ResultSet rs = stmnt2.executeQuery(sql2);
+            int id = 0;
+            while (rs.next()) {
+                id = rs.getInt("id");
+            }
+            data.setId(id);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +46,7 @@ public class UserDAO implements IDataAccessObject<User> {
                 email = rs.getString("email");
                 pass = rs.getString("pass");
             }
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
