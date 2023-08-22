@@ -26,6 +26,20 @@ public class UserDAO implements IDataAccessObject<User> {
         String username = "";
         String email = "";
         String pass = "";
+        try {
+            String sql = "SELECT username, email, pass FROM site_user WHERE id = " + id;
+            Statement stmnt = this.connection.createStatement();
+            ResultSet rs = stmnt.executeQuery(sql);
+
+            while (rs.next()) {
+                username = rs.getString("username");
+                email = rs.getString("email");
+                pass = rs.getString("pass");
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return new User(username, email, pass);
     }
 
