@@ -54,7 +54,22 @@ public class UserDAO implements IDataAccessObject<User> {
     }
 
     public boolean updateRecord(User data) {
-        return true;
+        boolean success = false;
+        try {
+            String sql = "UPDATE site_user SET username = ?, email = ?, pass = ? WHERE id = ?";
+            PreparedStatement stmnt = this.connection.prepareStatement(sql);
+            stmnt.setString(1, data.username);
+            stmnt.setString(2, data.email);
+            stmnt.setString(3, data.pass);
+            stmnt.setInt(4, data.getId());
+            int rowsAffected = stmnt.executeUpdate();
+            if (rowsAffected > 0) {
+                success = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
     }
 
     public boolean deleteRecord(int id) {
