@@ -73,6 +73,18 @@ public class UserDAO implements IDataAccessObject<User> {
     }
 
     public boolean deleteRecord(int id) {
-        return true;
+        boolean success = false;
+        try {
+            String sql = "DELETE FROM site_user WHERE id = ?";
+            PreparedStatement stmnt = this.connection.prepareStatement(sql);
+            stmnt.setInt(1, id);
+            int rowsAffected = stmnt.executeUpdate();
+            if (rowsAffected > 0) {
+                success = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
     }
 }
