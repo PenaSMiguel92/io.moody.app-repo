@@ -17,4 +17,14 @@ public class UserService {
         return this.userDAO.getAllRecords();
     }
 
+    public boolean updateUserById(User user) {
+        return this.userDAO.updateRecord(user);
+    }
+
+    public void createRecord(User user) {
+        this.userDAO.createRecord(user);
+    }
+
+
+
 }
