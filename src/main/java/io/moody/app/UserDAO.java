@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.*;
 import java.sql.*;
 
-public class UserDAO implements IDataAccessObject<User> {
+public class UserDAO implements IDAOSingle<User> {
     Connection connection;
 
     UserDAO() {
@@ -92,21 +92,5 @@ public class UserDAO implements IDataAccessObject<User> {
             e.printStackTrace();
         }
         return success;
-    }
-
-    public List<User> getAllRecords() {
-        List<User> users = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM site_user;";
-            Statement stmnt = this.connection.createStatement();
-            ResultSet rs = stmnt.executeQuery(sql);
-            while (rs.next()) {
-                User user = new User(rs.getString("username"), rs.getString("email"), rs.getString("pass"));
-                users.add(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return users;
     }
 }

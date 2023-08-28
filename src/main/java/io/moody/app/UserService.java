@@ -13,10 +13,6 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public List<User> getAllUsers() {
-        return this.userDAO.getAllRecords();
-    }
-
     public boolean updateUserById(User user) {
         return this.userDAO.updateRecord(user);
     }
