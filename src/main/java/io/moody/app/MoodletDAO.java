@@ -61,7 +61,28 @@ public class MoodletDAO implements IDAOMulti<Moodlet> {
     }
 
     public boolean updateRecord(List<Moodlet> data) {
-        return false;
+        boolean success = false;
+        try (Connection connection = DatabaseUtil.getConnection()) {
+            String sql = "UPDATE moodlet SET ";
+            for (int i = 0; i < data.size(); i++) {
+                Moodlet mood = data.get(i);
+                sql += mood.getName() + " = " + mood.getValue();
+                String tail = i < data.size() - 1 ? ", " : " ";
+                sql += tail;
+            }
+            sql += "WHERE user_id_fk = ?";
+
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, data.get(0).getOwnerId());
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0)
+                success = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
     }
 
     public boolean deleteRecord(long id) {
