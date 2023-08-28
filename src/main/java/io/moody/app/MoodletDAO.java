@@ -10,8 +10,6 @@ public class MoodletDAO implements IDAOMulti<Moodlet> {
         try (Connection connection = DatabaseUtil.getConnection()) {
             String sql = "INSERT INTO moodlet (user_id_fk, sleep_value, comfort_value, fun_value, hunger_value, social_vlaue, toilet_value, hygiene_value ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
-
-           
             for (int i = 0; i < data.size(); i++) {
                 Moodlet currentMoodlet = data.get(i);
                 if (i == 0) {
@@ -19,7 +17,6 @@ public class MoodletDAO implements IDAOMulti<Moodlet> {
                 }
                 ps.setInt(i + 2, currentMoodlet.getValue());
             }
-
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0)
                 success = true;

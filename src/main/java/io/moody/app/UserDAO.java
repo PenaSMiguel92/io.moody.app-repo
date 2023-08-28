@@ -1,6 +1,7 @@
 package io.moody.app;
 
 import java.io.IOException;
+import java.util.*;
 import java.sql.*;
 
 public class UserDAO implements IDAOSingle<User> {
@@ -26,7 +27,7 @@ public class UserDAO implements IDAOSingle<User> {
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
             stmnt.setString(1, data.getUsername());
             stmnt.setString(2, data.getEmail());
-            stmnt.setString(3, data.getPass());
+            stmnt.setLong(3, Objects.hash(data.getPass()));
             int rowsAffected = stmnt.executeUpdate();
             if (rowsAffected > 0)
                 success = true;

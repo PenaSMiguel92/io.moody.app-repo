@@ -1,17 +1,19 @@
 package io.moody.app;
 
-import java.util.Objects;
+import java.util.*;
 
 public class User {
     private long id;
     private String username;
     private String email;
     private String pass;
+    private List<Moodlet> moodlets;
 
     User(String username, String email, String pass) {
         this.username = username;
         this.email = email;
         this.pass = pass;
+        this.moodlets = new ArrayList<>();
     }
 
     void setId(long id) {
@@ -45,6 +47,11 @@ public class User {
     void setPass(String pass) {
         this.pass = pass;
     }
+
+    List<Moodlet> getMoodlets() {
+        return this.moodlets;
+    }
+
 
     @Override
     public int hashCode() {

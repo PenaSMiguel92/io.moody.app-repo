@@ -1,7 +1,5 @@
 package io.moody.app;
 
-import java.util.*;
-
 public interface IDAOSingle<T> {
     //crud - create, read, update, delete data from database;
     public boolean createRecord(T data);
