@@ -27,6 +27,22 @@ public class MoodletService {
     
     public boolean insertMoodlets(User user) {
         List<Moodlet> userMoodlets = user.getMoodlets();
+        if (userMoodlets.isEmpty())
+            return false;
+
         return this.moodletDAO.createRecord(userMoodlets);
     }
+
+    public List<Moodlet> getMoodletsFromDatabase(User user) {
+        return this.moodletDAO.readRecord(user.getId());
+    }
+
+    public boolean updateMoodlets(User user) {
+        List<Moodlet> userMoodlets = user.getMoodlets();
+        if (userMoodlets.isEmpty())
+            return false;
+
+        return this.moodletDAO.updateRecord(userMoodlets);
+    }
+    
 }
