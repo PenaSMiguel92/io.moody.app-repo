@@ -3,24 +3,23 @@ package io.moody.app;
 import java.util.Objects;
 
 public class Moodlet {
-    private static int _id;
-    private int id;
+    private long id;
     private int value;
     private String name;
-
+    private long owner_id;
+    
     Moodlet() {
     }
 
     Moodlet(String name) {
         this.name = name;
-        this.id = _id++;
     }
 
-    int getId() {
+    long getId() {
         return this.id;
     }
 
-    void setId(int id) {
+    void setId(long id) {
         this.id = id;
     }
 
@@ -63,6 +62,6 @@ public class Moodlet {
 
     @Override
     public String toString() {
-        return "Moodlet: " + this.id + "\n Name: " + this.name + "\n Value: " + this.value;
+        return "Moodlet: [ id: " + this.id + ", Name: " + this.name + ", Value: " + this.value + " ]";
     }
 }

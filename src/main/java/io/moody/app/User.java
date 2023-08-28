@@ -3,18 +3,15 @@ package io.moody.app;
 import java.util.Objects;
 
 public class User {
-    private static long _id = 1;
     private long id;
     private String username;
     private String email;
     private String pass;
-    private Moodlet[] moodlets;
 
     User(String username, String email, String pass) {
         this.username = username;
         this.email = email;
         this.pass = pass;
-        this.id = _id++;
     }
 
     void setId(long id) {
@@ -49,10 +46,6 @@ public class User {
         this.pass = pass;
     }
 
-    Moodlet[] getMoodlets() {
-        return this.moodlets;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(this.id, this.username, this.email, this.pass);
@@ -77,6 +70,6 @@ public class User {
         for (int index = 0; index < this.pass.length(); index++) {
             passVal += "*";
         }
-        return "User: " + this.id + "\n Username: " + this.username + "\n Email: " + this.email + "\n Pass: " + passVal;
+        return "User: [ id: " + this.id + ", username: " + this.username + ", email: " + this.email + ", pass: " + passVal + "]";
     }
 }
