@@ -10,9 +10,7 @@ public class UserDAO implements IDAOSingle<User> {
     UserDAO() {
         try {
             this.connection = DatabaseUtil.getConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -23,7 +21,7 @@ public class UserDAO implements IDAOSingle<User> {
     public boolean createRecord(User data) {
         boolean success = false;
         try {
-            String sql = "INSERT INTO site_user (username, email, pass) VALUES ( ?, ?, ?);"; 
+            String sql = "INSERT INTO site_user VALUES ( DEFAULT, ?, ?, ?);"; 
             PreparedStatement stmnt = this.connection.prepareStatement(sql);
             stmnt.setString(1, data.getUsername());
             stmnt.setString(2, data.getEmail());
