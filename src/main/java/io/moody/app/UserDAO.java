@@ -1,7 +1,6 @@
 package io.moody.app;
 
 import java.io.IOException;
-import java.util.*;
 import java.sql.*;
 
 public class UserDAO implements IDAOSingle<User> {

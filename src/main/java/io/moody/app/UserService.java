@@ -1,7 +1,5 @@
 package io.moody.app;
 
-import java.util.*;
-
 public class UserService {
     UserDAO userDAO;
 
@@ -20,7 +18,4 @@ public class UserService {
     public void createRecord(User user) {
         this.userDAO.createRecord(user);
     }
-
-
-
 }

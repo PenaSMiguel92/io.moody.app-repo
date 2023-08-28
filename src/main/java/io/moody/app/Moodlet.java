@@ -3,24 +3,31 @@ package io.moody.app;
 import java.util.Objects;
 
 public class Moodlet {
+    private static long _id = 1;
     private long id;
     private int value;
     private String name;
     private long owner_id;
     
     Moodlet() {
+        this.id = _id++;
     }
 
     Moodlet(String name) {
         this.name = name;
+        this.id = _id++;
     }
 
     long getId() {
         return this.id;
     }
 
-    void setId(long id) {
-        this.id = id;
+    long getOwnerId() {
+        return this.owner_id;
+    }
+
+    void setOwnerId(long id) {
+        this.owner_id = id;
     }
 
     int getValue() {
@@ -57,11 +64,11 @@ public class Moodlet {
     
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.name, this.value);
+        return Objects.hash(this.id, this.name, this.value, this.owner_id);
     }
 
     @Override
     public String toString() {
-        return "Moodlet: [ id: " + this.id + ", Name: " + this.name + ", Value: " + this.value + " ]";
+        return "Moodlet: [ id: " + this.id + ", name: " + this.name + ", value: " + this.value + " ]";
     }
 }
