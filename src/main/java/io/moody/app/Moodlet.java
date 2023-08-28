@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Moodlet {
     private static long _id = 1;
     private long id;
-    private int value;
+    private int value = 0;
     private String name;
     private long owner_id;
     
