@@ -8,6 +8,9 @@ public class Moodlet {
     private int value;
     private String name;
 
+    Moodlet() {
+    }
+
     Moodlet(String name) {
         this.name = name;
         this.id = _id++;
