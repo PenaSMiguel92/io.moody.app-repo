@@ -86,6 +86,19 @@ public class MoodletDAO implements IDAOMulti<Moodlet> {
     }
 
     public boolean deleteRecord(long id) {
-        return false;
+        boolean success = false;
+        try (Connection connection = DatabaseUtil.getConnection()) {
+            String sql = "DELETE FROM moodlet WHERE user_id_fk = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, id);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0)
+                success = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return success;
     }
 }
