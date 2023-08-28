@@ -44,5 +44,9 @@ public class MoodletService {
 
         return this.moodletDAO.updateRecord(userMoodlets);
     }
+
+    public boolean removeMoodlets(User user) {
+        return this.moodletDAO.deleteRecord(user.getId());
+    }
     
 }
