@@ -94,10 +94,9 @@ public class MoodletDAO implements IDAOMulti<Moodlet> {
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0)
                 success = true;
-        } catch (IOException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.print("Connection was NOT successful");
         }
         return success;
     }

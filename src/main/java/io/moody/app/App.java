@@ -10,9 +10,10 @@ public class App
     {
         
         try (Connection connection = DatabaseUtil.getConnection();) {
-            UserDAO userDAO = new UserDAO(connection);
-            User newUser = new User("blehman3000", "suckthis@notanemail.com", "lickme123");
-            userDAO.createRecord(newUser);
+            System.out.print("success");
+            // UserDAO userDAO = new UserDAO(connection);
+            // User newUser = new User("blehman3000", "suckthis@notanemail.com", "lickme123");
+            // userDAO.createRecord(newUser);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {

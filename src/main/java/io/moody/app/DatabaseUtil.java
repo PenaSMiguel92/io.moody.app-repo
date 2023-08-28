@@ -10,9 +10,10 @@ public class DatabaseUtil {
     private static String CONNECTION_PASSWORD;
     
     public static Connection getConnection() throws SQLException, FileNotFoundException, IOException {
-        FileInputStream fileStream = new FileInputStream("src\\main\\java\\io\\moody\\app\\moodyDB.properties");
+        FileInputStream fileStream = new FileInputStream("src\\main\\resources\\moodyDB.properties");
         Properties properties = new Properties();
         properties.load(fileStream);
+        
         URL = properties.getProperty("URL");
         CONNECTION_USERNAME = properties.getProperty("CONNECTION_USERNAME");
         CONNECTION_PASSWORD = properties.getProperty("CONNECTION_PASSWORD");
