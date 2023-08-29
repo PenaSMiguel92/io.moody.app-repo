@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
-public class MoodletDAO implements IDAOMulti<Moodlet> {
+public class MoodletDAO {
 
     public boolean createRecord(List<Moodlet> data) {
         boolean success = false;

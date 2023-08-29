@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.*;
 import java.sql.*;
 
-public class UserDAO implements IDAOSingle<User> {
+public class UserDAO {
     Connection connection;
 
     UserDAO() {
