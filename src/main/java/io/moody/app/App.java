@@ -9,7 +9,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        Javalin app = Javalin.create().get("/", ctx -> ctx.result("Hello World!")).start(8080);
+        Javalin app = Javalin.create();
+        app.get("/", ctx -> ctx.result("Hello World!"));
+        app.get("/sample-area", ctx -> ctx.result("Let's see if we can return this!"));
+        app.start(8080);
         
         // try (Connection connection = DatabaseUtil.getConnection();) {
         //     System.out.print("success");
