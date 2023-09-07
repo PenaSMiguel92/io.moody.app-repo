@@ -27,4 +27,36 @@ public class ProductService {
         else
             ctx.status(400).result("Product not found");
     }
+
+    public void addNewProduct(Context ctx) {
+        Product product = ctx.bodyAsClass(Product.class);
+        if (product.getProductName() == null || product.getProductName().length() < 1) {
+            ctx.status(400).result("Product was not added");
+            return;
+        }
+
+        if (db.addProduct(product) != null)
+            ctx.json(product);
+        else
+            ctx.status(400).result("Product was not added");
+    }
+
+    public void updateProductById(Context ctx) {
+        Product product = ctx.bodyAsClass(Product.class);
+        product.setProductId(Integer.valueOf(ctx.pathParam("id")));
+        Product p = db.updateProduct(product);
+        if (p != null)
+            ctx.json(p);
+        else
+            ctx.status(400).result("Product could not be updated - product not found");
+    }
+    
+    public void deleteProductById(Context ctx) {
+        int id = Integer.valueOf(ctx.pathParam("id"));
+        Product p = db.deleteProduct(id);
+        if (p != null)
+            ctx.json(p);
+        else
+            ctx.status(400).result("Product could not be deleted - product not found");
+    }
 }
