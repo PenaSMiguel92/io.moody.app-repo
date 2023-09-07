@@ -15,6 +15,16 @@ public class ProductService {
         ctx.json(products);
 
         ctx.status(200);
-        
+    }
+
+    public void getProductById(Context ctx) {
+        String paramValue = ctx.pathParam("id");
+        int id = Integer.parseInt(paramValue);
+        Product p = db.getProductById(id);
+
+        if (p != null)
+            ctx.json(p);
+        else
+            ctx.status(400).result("Product not found");
     }
 }

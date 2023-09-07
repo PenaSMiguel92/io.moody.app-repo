@@ -13,7 +13,9 @@ public class App
         app.get("/", ctx -> ctx.result("Hello World!"));
         app.get("/sample-area", ctx -> ctx.result("Let's see if we can return this!"));
         app.start(8080);
-        
+
+        Controller controller = new Controller();
+        controller.setEndpoints(app);
         // try (Connection connection = DatabaseUtil.getConnection();) {
         //     System.out.print("success");
         //     // UserDAO userDAO = new UserDAO(connection);

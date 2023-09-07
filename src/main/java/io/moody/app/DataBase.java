@@ -29,7 +29,7 @@ public class DataBase {
         return this.myProducts;
     }
 
-    public Product geProductById(long id) {
+    public Product getProductById(long id) {
         for (Product p : this.myProducts)
             if (p.getProductId() == id)
                 return p;
